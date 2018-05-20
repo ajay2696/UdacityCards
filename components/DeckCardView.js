@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {View,Text,StyleSheet,TouchableOpacity} from 'react-native';
-import {blue,grey} from '../util/colors';
+import {grey} from '../util/colors';
 
 class DeckCardView extends Component{
     render(){
@@ -27,10 +27,11 @@ const styles=StyleSheet.create({
         borderWidth: 0.25
     },
     cardTitle: {
-       fontSize:16,
-       textAlign:'center'
+        fontSize:16,
+        textAlign:'center'
     },
     cardDetail:{
     }
 });
+
 export default DeckCardView;

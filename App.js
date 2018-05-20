@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View,Platform,TextInput} from 'react-native';
+import { StyleSheet,View,Platform} from 'react-native';
 import DecksList from './components/DecksList';
 import AddNewDeck from './components/AddNewDeck';
 import DeckQuizHomeView from './components/DeckQuizHomeView';
@@ -10,46 +10,45 @@ import {Entypo} from '@expo/vector-icons';
 import {purple,white} from './util/colors'
 
 const MainScreenNavigator =createStackNavigator({
-   DecksList:{
-      screen:DecksList
-   },
-   AddQuestion:{
-      screen:AddQuestion
-   },
-   DeckQuizHomeView:{
-      screen:DeckQuizHomeView
-   },
-   QuizQuesionView:{
-      screen:QuizQuesionView
-   }
+    DecksList:{
+        screen:DecksList
+    },
+    AddQuestion:{
+        screen:AddQuestion
+    },
+    DeckQuizHomeView:{
+        screen:DeckQuizHomeView
+    },
+    QuizQuesionView:{
+        screen:QuizQuesionView
+    }
 })
 
 const AddDeckNavigator =createStackNavigator({
-  AddNewDeck:{
-     screen:AddNewDeck
-  },
-  AddQuestion:{
-     screen:AddQuestion
-  },
+    AddNewDeck:{
+        screen:AddNewDeck
+    },
+    AddQuestion:{
+        screen:AddQuestion
+    },
 });
 
 const HomeScreenTabNavigator =createBottomTabNavigator({
     TabItem1:{
-      screen:MainScreenNavigator,
-      navigationOptions:{
+        screen:MainScreenNavigator,
+        navigationOptions:{
             tabBarLabel:'Decks List',
             tabBarIcon:({tintColor})=> <Entypo name='list' size={30} color={tintColor}/>
         }
     },
     TabItem2:{
-      screen:AddDeckNavigator,
-      navigationOptions:{
+        screen:AddDeckNavigator,
+        navigationOptions:{
             tabBarLabel:'Add Deck',
             tabBarIcon:({tintColor})=> <Entypo name='add-to-list' size={30} color={tintColor}/>
         }
     }
-}
-,{
+},{
     tabBarOptions:{
         activeTintColor:Platform.OS === 'ios' ? purple : white ,
         style: {
@@ -68,19 +67,19 @@ const HomeScreenTabNavigator =createBottomTabNavigator({
 
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <HomeScreenTabNavigator />
-      </View>
-    );
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                <HomeScreenTabNavigator />
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent:'space-between'
-  }
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        justifyContent:'space-between'
+    }
 });

@@ -1,25 +1,26 @@
 import React,{Component} from 'react';
 import {View,ScrollView} from 'react-native';
 import DeckCardView from './DeckCardView';
-import {getDecksList} from '../util/api';
+import {connect} from 'react-redux';
+import {fetchDecksList} from '../actions/index';
 
 class DecksList extends Component{
     state={
-        decksLst:[]
+        title:''
     }
     componentDidMount(){
-        getDecksList().then((results)=>{
-            let decksLst = Object.keys(results).map((key) => {
-                return results[key];
-            });
-            this.setState({decksLst})
-        });
+        this.props.fetchDecksList();
+        console.log('component will mount');
     }
     render(){
+        console.log('render');
+        console.log(this.props.navigation);
+        console.log('---Navigation Object ends--');
+        let decksList = Object.keys(this.props.decksList).map((key) => this.props.decksList[key]);
         return (
             <View>
                 <ScrollView>
-                    {this.state.decksLst.map((deck)=>{
+                    {decksList.map((deck)=>{
                         return (
                             <DeckCardView
                                 key={deck.title}
@@ -33,4 +34,14 @@ class DecksList extends Component{
         );
     }
 }
-export default DecksList;
+function mapStatetoProps(state){
+    return {
+        decksList:state
+    }
+}
+function mapDispatchToProps(dispatch){
+    return {
+        fetchDecksList:()=>dispatch(fetchDecksList())
+    }
+}
+export default connect(mapStatetoProps,mapDispatchToProps)(DecksList);

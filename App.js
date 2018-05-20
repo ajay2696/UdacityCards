@@ -7,7 +7,11 @@ import AddQuestion from './components/AddQuestion';
 import QuizQuesionView from './components/QuizQuesionView';
 import {createBottomTabNavigator,createStackNavigator} from 'react-navigation';
 import {Entypo} from '@expo/vector-icons';
-import {purple,white} from './util/colors'
+import {purple,white} from './util/colors';
+import {createStore,applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+import reducer from './reducers';
+import thunk from 'redux-thunk';
 
 const MainScreenNavigator =createStackNavigator({
     DecksList:{
@@ -27,10 +31,7 @@ const MainScreenNavigator =createStackNavigator({
 const AddDeckNavigator =createStackNavigator({
     AddNewDeck:{
         screen:AddNewDeck
-    },
-    AddQuestion:{
-        screen:AddQuestion
-    },
+    }
 });
 
 const HomeScreenTabNavigator =createBottomTabNavigator({
@@ -65,13 +66,15 @@ const HomeScreenTabNavigator =createBottomTabNavigator({
     }
 });
 
-
 export default class App extends React.Component {
+
     render() {
         return (
-            <View style={styles.container}>
-                <HomeScreenTabNavigator />
-            </View>
+            <Provider store={createStore(reducer,applyMiddleware(thunk))}>
+                <View style={styles.container}>
+                    <HomeScreenTabNavigator />
+                </View>
+            </Provider>
         );
     }
 }
@@ -79,7 +82,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         justifyContent:'space-between'
     }
 });

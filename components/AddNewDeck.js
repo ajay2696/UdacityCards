@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import {addDeck} from '../util/api';
 import {grey,purple,white} from '../util/colors';
+import {connect} from 'react-redux';
+import {addNewDeck} from '../actions/index';
 
 class AddNewDeck extends Component {
    state = {
@@ -13,18 +14,21 @@ class AddNewDeck extends Component {
    }
    onSubmit = () =>{
        if(this.state.deckTitle!==''){
-           addDeck(this.state.deckTitle);
-           this.props.navigation.navigate('DecksList');
+           this.props.addNewDeck(this.state.deckTitle);
+           this.props.navigation.navigate('DecksList',{
+               title:this.state.deckTitle
+           });
        }
    }
    render(){
+       console.log(this.props);
        return (
            <View style = {styles.container}>
                <Text> What is the Title of your new Deck? </Text>
                <TextInput style = {styles.input}
                    underlineColorAndroid = "transparent"
                    placeholder = "Deck Title"
-                   multiline="true"
+                   multiline={true}
                    value={this.state.deckTitle}
                    onChangeText = {this.onChangeDeckTitle}/>
 
@@ -61,4 +65,15 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddNewDeck;
+function mapStatetoProps(state){
+    return {
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        addNewDeck:(title)=>dispatch(addNewDeck(title))
+    }
+}
+
+export default connect(mapStatetoProps,mapDispatchToProps)(AddNewDeck);

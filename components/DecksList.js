@@ -3,20 +3,22 @@ import {View,ScrollView} from 'react-native';
 import DeckCardView from './DeckCardView';
 import {connect} from 'react-redux';
 import {fetchDecksList} from '../actions/index';
+import PropTypes from 'prop-types';
 
 class DecksList extends Component{
+    static navigationOptions = {
+        title: 'Decks List',
+    };
     state={
         title:''
     }
     componentDidMount(){
         this.props.fetchDecksList();
-        console.log('component will mount');
     }
     render(){
-        console.log('render');
-        console.log(this.props.navigation);
-        console.log('---Navigation Object ends--');
+
         let decksList = Object.keys(this.props.decksList).map((key) => this.props.decksList[key]);
+
         return (
             <View>
                 <ScrollView>
@@ -43,5 +45,10 @@ function mapDispatchToProps(dispatch){
     return {
         fetchDecksList:()=>dispatch(fetchDecksList())
     }
+}
+DecksList.propTypes={
+    fetchDecksList:PropTypes.func,
+    navigation:PropTypes.object,
+    decksList:PropTypes.object
 }
 export default connect(mapStatetoProps,mapDispatchToProps)(DecksList);

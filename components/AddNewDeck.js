@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import {grey,purple,white} from '../util/colors';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import {connect} from 'react-redux';
 import {addNewDeck} from '../actions/index';
+import PropTypes from 'prop-types';
+import {styles} from '../util/stylesheet';
 
 class AddNewDeck extends Component {
+    static navigationOptions = {
+        title: 'Add New Deck',
+    };
    state = {
        deckTitle: ''
    }
@@ -12,19 +16,21 @@ class AddNewDeck extends Component {
    onChangeDeckTitle = (text) => {
        this.setState({ deckTitle: text })
    }
+
    onSubmit = () =>{
        if(this.state.deckTitle!==''){
            this.props.addNewDeck(this.state.deckTitle);
            this.props.navigation.navigate('DecksList',{
                title:this.state.deckTitle
            });
+           this.setState({ deckTitle:''})
        }
    }
+
    render(){
-       console.log(this.props);
        return (
            <View style = {styles.container}>
-               <Text> What is the Title of your new Deck? </Text>
+               <Text style={styles.headerText}> What is the Title of your new Deck? </Text>
                <TextInput style = {styles.input}
                    underlineColorAndroid = "transparent"
                    placeholder = "Deck Title"
@@ -33,41 +39,13 @@ class AddNewDeck extends Component {
                    onChangeText = {this.onChangeDeckTitle}/>
 
                <TouchableOpacity
-                   style = {styles.submitButton}
+                   style = {styles.button}
                    onPress = {this.onSubmit}>
-                   <Text style = {styles.submitButtonText}> Submit </Text>
+                   <Text style = {styles.buttonText}> Submit </Text>
                </TouchableOpacity>
            </View>
        )
    }
-}
-
-const styles = StyleSheet.create({
-    container: {
-        paddingTop: 23
-    },
-    input: {
-        margin: 15,
-        height: 80,
-        borderColor: grey,
-        borderWidth: 1
-    },
-    submitButton: {
-        backgroundColor: purple,
-        borderWidth: 1,
-        padding: 10,
-        margin: 15,
-        height: 40,
-    },
-    submitButtonText:{
-        color: white,
-        textAlign:'center'
-    }
-})
-
-function mapStatetoProps(state){
-    return {
-    }
 }
 
 function mapDispatchToProps(dispatch){
@@ -76,4 +54,8 @@ function mapDispatchToProps(dispatch){
     }
 }
 
-export default connect(mapStatetoProps,mapDispatchToProps)(AddNewDeck);
+AddNewDeck.propTypes ={
+    addNewDeck:PropTypes.func,
+    navigation:PropTypes.object
+}
+export default connect(null,mapDispatchToProps)(AddNewDeck);

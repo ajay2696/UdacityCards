@@ -4,7 +4,6 @@ function decks(state={},action){
     switch(action.type){
     case RECIEVE_DECK_LIST:
         return {
-            ...state,
             ...action.decks
         }
     case ADD_NEW_DECK:
@@ -14,21 +13,16 @@ function decks(state={},action){
             ...state,
             ...action.entry
         }
-    case ADD_QUESTION:
-        return {
-            ...state,
-            ...action.question
-        }
+    case ADD_QUESTION: {
+        return Object.assign({},state)[action.title].push(action.question);
+    }
     case SUBMIT_QUIZ:
         return {
             ...state,
             ...action.title
         }
     case RECIEVE_DECK:
-        return {
-            ...state,
-            ...action.title
-        }
+        return state[action.title];
     default:
         return state;
     }

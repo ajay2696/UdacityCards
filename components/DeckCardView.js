@@ -1,12 +1,16 @@
 import React,{Component} from 'react';
-import {View,Text,StyleSheet,TouchableOpacity} from 'react-native';
-import {grey} from '../util/colors';
+import {Text,TouchableOpacity} from 'react-native';
+import PropTypes from 'prop-types';
+import {styles} from '../util/stylesheet'
 
 class DeckCardView extends Component{
+
     render(){
         return (
             <TouchableOpacity  onPress={()=>this.props.navigation.navigate(
-                'DeckQuizHomeView'
+                'DeckQuizHomeView',{
+                    title:this.props.title
+                }
             )
             }
             style={styles.cardSize}>
@@ -17,21 +21,10 @@ class DeckCardView extends Component{
     }
 }
 
-const styles=StyleSheet.create({
-    cardSize: {
-        height:60,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderStyle:'solid',
-        borderColor:grey,
-        borderWidth: 0.25
-    },
-    cardTitle: {
-        fontSize:16,
-        textAlign:'center'
-    },
-    cardDetail:{
-    }
-});
+DeckCardView.propTypes={
+    navigation:PropTypes.object,
+    title:PropTypes.string,
+    count:PropTypes.number
+}
 
 export default DeckCardView;

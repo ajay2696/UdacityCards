@@ -61,5 +61,10 @@ export const styles = StyleSheet.create({
         marginRight:80,
         height: 40,
         justifyContent:'center'
+    },
+    errorMessageText:{
+        fontSize:16,
+        color: red,
+        textAlign:'center',
     }
 });

@@ -14,15 +14,15 @@ function decks(state={},action){
             ...action.entry
         }
     case ADD_QUESTION: {
-        return Object.assign({},state)[action.title].push(action.question);
+        let prevState=Object.assign({},state);
+        prevState[action.title]['questions'].push(action.question);
+        return prevState;
     }
     case SUBMIT_QUIZ:
         return {
             ...state,
             ...action.title
         }
-    case RECIEVE_DECK:
-        return state[action.title];
     default:
         return state;
     }

@@ -10,7 +10,8 @@ class AddQuestion extends Component {
   };
   state ={
       question:'',
-      answer:''
+      answer:'',
+      errorMessage:''
   }
   onChangeQuestion=(text)=>{
       this.setState((prevState)=>({
@@ -25,15 +26,41 @@ class AddQuestion extends Component {
       }));
   }
   onSubmit=()=>{
-      this.props.addQuestion({
-          question:this.state.question,
-          answer:this.state.answer
-      });
+      if(this.state.question==='' && this.state.answer===''){
+          this.setState((prevState)=>({
+              ...prevState,
+              errorMessage:'Question and Answer fields should not be blank'
+          }));
+      }else if(this.state.question==='' ){
+          this.setState((prevState)=>({
+              ...prevState,
+              errorMessage:'Question field should not be blank'
+          }));
+      }else if(this.state.answer===''){
+          this.setState((prevState)=>({
+              ...prevState,
+              errorMessage:'Answer field should not be blank'
+          }));
+      } else {
+          this.props.addQuestion(
+              'Ajay',
+              {
+                  question:this.state.question,
+                  answer:this.state.answer
+              });
+          this.props.navigation.navigate('DeckQuizHomeView');
+          this.setState({
+              question:'',
+              answer:'',
+              errorMessage:''
+          });
+      }
 
   }
   render(){
       return(
           <View style={styles.container}>
+              <Text style={styles.errorMessageText}>{this.state.errorMessage} </Text>
               <TextInput style = {styles.input}
                   underlineColorAndroid = "transparent"
                   placeholder = "Question"

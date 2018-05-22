@@ -16,9 +16,7 @@ class DecksList extends Component{
         this.props.fetchDecksList();
     }
     render(){
-
         let decksList = Object.keys(this.props.decksList).map((key) => this.props.decksList[key]);
-
         return (
             <View>
                 <ScrollView>
@@ -28,7 +26,7 @@ class DecksList extends Component{
                                 key={deck.title}
                                 navigation={this.props.navigation}
                                 title={deck.title}
-                                count={deck.count} />
+                                count={deck.questions.length} />
                         );
                     })}
                 </ScrollView>

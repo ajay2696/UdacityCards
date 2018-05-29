@@ -3,13 +3,12 @@ import {white,purple,grey,red,green,orange} from '../util/colors';
 
 export const styles = StyleSheet.create({
     container: {
-        paddingTop: 23,
         justifyContent:'center',
         alignItems: 'center',
     },
     headerText: {
-        margin: 15,
-        textAlign:'left',
+        margin: 5,
+        textAlign:'center',
         fontSize:20
     },
     button: {
@@ -26,7 +25,7 @@ export const styles = StyleSheet.create({
         textAlign:'center',
     },
     input: {
-        margin: 15,
+        margin: 5,
         height: 80,
         width:300,
         borderColor: grey,
@@ -74,7 +73,7 @@ export const styles = StyleSheet.create({
     },
     flipCard: {
         height: 200,
-        width: 200,
+        width: 300,
         alignItems: 'center',
         justifyContent: 'center',
         backfaceVisibility: 'hidden',

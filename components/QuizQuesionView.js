@@ -8,11 +8,11 @@ class QuizQuesionView extends Component {
     state={
         questionNo:1,
         animatedValue:new Animated.Value(0),
-        showQuestion:true
+        showQuestion:true,
+        correctAnswerCount:0
     }
 
     ViewQuestonOrAnswer=()=>{
-       console.log(this.state.animatedValue._value);
         if (this.state.animatedValue._value >= 90) {
             Animated.spring(this.state.animatedValue,{
                 toValue: 0,
@@ -37,6 +37,27 @@ class QuizQuesionView extends Component {
             }));
         }
     }
+    correctAnswer=()=>{
+
+        this.setState((prevState)=>({
+            ...prevState,
+            questionNo:prevState.questionNo+1,
+            correctAnswerCount:prevState.correctAnswerCount+1
+        }));
+    }
+    incorrectAnswer=()=>{
+        this.setState((prevState)=>({
+            ...prevState,
+            questionNo:prevState.questionNo+1
+        }));
+    }
+    restartQuiz=()=>{
+        this.setState((prevState)=>({
+            ...prevState,
+            questionNo:1,
+            correctAnswerCount:0
+        }));
+    }
 
     render(){
 
@@ -56,50 +77,67 @@ class QuizQuesionView extends Component {
             inputRange: [89, 90],
             outputRange: [0, 1]
         });
-        
-        let question =this.props.questions[this.state.questionNo];
+
         let totalQuestions= this.props.questions.length;
+        console.log(this.state.questionNo);
+        console.log(totalQuestions);
+        console.log(this.props.questions[this.state.questionNo-1])
+        let question =this.state.questionNo<=totalQuestions?this.props.questions[this.state.questionNo-1]:null;
+
         return (
             <View style={styles.quizcontainer}>
-                <View>
-                    <Text style={styles.headerText}>Questions {this.state.questionNo} of {totalQuestions}</Text>
-                </View>
-                <View>
-                    <Animated.View style={[styles.flipCard,
-                        {transform:[{ rotateY: frontInterpolate }]},
-                        {opacity: frontOpacity} ]}>
-                        <Text style={styles.headerText}>{question.question}</Text>
-                    </Animated.View>
-                    <Animated.View style={[styles.flipCard,styles.flipCardBack,
-                        {transform: [{ rotateY: backInterpolate }]},
-                        {opacity: backOpacity}]}>
-                        <Text style={styles.headerText}>{question.answer}</Text>
-                        <Text></Text>
-                    </Animated.View>
-                </View>
-                {this.state.showQuestion&&
+                {this.state.questionNo<=totalQuestions&&
                     (<View>
-                        <Text> </Text>
-                        <TouchableOpacity style={styles.greenColorButton}>
-                            <Text style={styles.buttonText} > Correct </Text>
-                        </TouchableOpacity>
-                        <Text> </Text>
-                        <TouchableOpacity style={styles.redColorButton}>
-                            <Text style={styles.buttonText} > Incorrect</Text>
-                        </TouchableOpacity>
-                        <Text> </Text>
-                        <TouchableOpacity style={styles.button} onPress={this.ViewQuestonOrAnswer}>
-                            <Text style={styles.buttonText}> View Answer </Text>
-                        </TouchableOpacity>
+                        <View>
+                            <Text style={styles.headerText}>Questions {this.state.questionNo} of {totalQuestions}</Text>
+                        </View>
+                        <View>
+                            <Animated.View style={[styles.flipCard,
+                                {transform:[{ rotateY: frontInterpolate }]},
+                                {opacity: frontOpacity} ]}>
+                                <Text style={styles.headerText}>{question.question}</Text>
+                            </Animated.View>
+                            <Animated.View style={[styles.flipCard,styles.flipCardBack,
+                                {transform: [{ rotateY: backInterpolate }]},
+                                {opacity: backOpacity}]}>
+                                <Text style={styles.headerText}>{question.answer}</Text>
+                                <Text></Text>
+                            </Animated.View>
+                        </View>
+                        {this.state.showQuestion&&
+                            (<View>
+                                <Text> </Text>
+                                <TouchableOpacity style={styles.greenColorButton} onPress={this.correctAnswer}>
+                                    <Text style={styles.buttonText} > Correct </Text>
+                                </TouchableOpacity>
+                                <Text> </Text>
+                                <TouchableOpacity style={styles.redColorButton} onPress={this.incorrectAnswer}>
+                                    <Text style={styles.buttonText} > Incorrect</Text>
+                                </TouchableOpacity>
+                                <Text> </Text>
+                                <TouchableOpacity style={styles.button} onPress={this.ViewQuestonOrAnswer}>
+                                    <Text style={styles.buttonText}> View Answer </Text>
+                                </TouchableOpacity>
+                            </View>)
+                        }
+                        {!this.state.showQuestion&&
+                            (<View>
+                                <Text> </Text>
+                                <TouchableOpacity style={styles.button} onPress={this.ViewQuestonOrAnswer}>
+                                    <Text style={styles.buttonText}> View Queston </Text>
+                                </TouchableOpacity>
+                            </View>)
+                        }
                     </View>)
                 }
-                {!this.state.showQuestion&&
+                {this.state.questionNo>totalQuestions&&
                     (<View>
-                        <Text> </Text>
-                        <TouchableOpacity style={styles.button} onPress={this.ViewQuestonOrAnswer}>
-                            <Text style={styles.buttonText}> View Queston </Text>
+                        <Text style={styles.headerText}> Your score:{(this.state.correctAnswerCount/totalQuestions)*100}%</Text>
+                        <TouchableOpacity style={styles.button} onPress={this.restartQuiz}>
+                            <Text style={styles.buttonText}> Restart Quiz </Text>
                         </TouchableOpacity>
-                    </View>)
+                    </View>
+                    )
                 }
             </View>
         );
@@ -119,6 +157,6 @@ function mapDispatchToProps(dispatch){
     };
 }
 QuizQuesionView.propTypes={
-
+    questions:PropTypes.object
 }
 export default connect(mapStateToProps,mapDispatchToProps)(QuizQuesionView);

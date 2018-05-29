@@ -26,6 +26,8 @@ class AddQuestion extends Component {
       }));
   }
   onSubmit=()=>{
+      let titleName=this.props.navigation.getParam('title');
+
       if(this.state.question==='' && this.state.answer===''){
           this.setState((prevState)=>({
               ...prevState,
@@ -43,7 +45,7 @@ class AddQuestion extends Component {
           }));
       } else {
           this.props.addQuestion(
-              'Ajay',
+              titleName,
               {
                   question:this.state.question,
                   answer:this.state.answer
@@ -58,8 +60,11 @@ class AddQuestion extends Component {
 
   }
   render(){
+      let titleName=this.props.navigation.getParam('title');
+
       return(
           <View style={styles.container}>
+              <Text style={styles.headerText}>Deck Title:{titleName} </Text>
               <Text style={styles.errorMessageText}>{this.state.errorMessage} </Text>
               <TextInput style = {styles.input}
                   underlineColorAndroid = "transparent"

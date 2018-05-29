@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Text,TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
-import {styles} from '../util/stylesheet'
+import {styles} from '../util/stylesheet';
 
 class DeckCardView extends Component{
 

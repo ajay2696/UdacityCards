@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {Text,View,TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 import {styles} from '../util/stylesheet';
-
+import {connect} from 'react-redux';
 
 class DeckQuizHomeView extends Component{
     static navigationOptions =({navigation})=> {
@@ -13,18 +13,24 @@ class DeckQuizHomeView extends Component{
     };
 
     render(){
+        let noOfQuestions =this.props.deck.questions.length;
+        let {navigation} =this.props;
         return (
             <View style={styles.container}>
-                <Text style={styles.headerText}>Number Of Questions:</Text>
-                <TouchableOpacity
+                <Text style={styles.headerText}>Number Of Questions:{noOfQuestions}</Text>
+                {noOfQuestions>0 && <TouchableOpacity
                     style={styles.button}
-                    onPress={()=>this.props.navigation.navigate('QuizQuesionView')}>
+                    onPress={()=>navigation.navigate('QuizQuesionView',{
+                        title:navigation.getParam('title')
+                    })}>
                     <Text style={styles.buttonText} > Start Quiz</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>}
                 <Text> </Text>
                 <TouchableOpacity
                     style={styles.button}
-                    onPress={()=>this.props.navigation.navigate('AddQuestion')}>
+                    onPress={()=>navigation.navigate('AddQuestion',{
+                        title:navigation.getParam('title')
+                    })}>
                     <Text style={styles.buttonText}>Add Question</Text>
                 </TouchableOpacity>
                 <Text> </Text>
@@ -42,8 +48,15 @@ class DeckQuizHomeView extends Component{
     }
 }
 
+function mapStateToProps(state,ownProps){
+    let titleName =ownProps.navigation.getParam('title');
+    return {
+        deck:state[titleName]
+    }
+}
 DeckQuizHomeView.propTypes={
-    navigation:PropTypes.object
+    navigation:PropTypes.object,
+    deck:PropTypes.object
 }
 
-export default DeckQuizHomeView;
+export default connect(mapStateToProps,null)(DeckQuizHomeView);

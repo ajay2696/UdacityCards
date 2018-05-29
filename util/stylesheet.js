@@ -1,9 +1,11 @@
 import {StyleSheet} from 'react-native';
-import {white,purple,grey,red,green} from '../util/colors';
+import {white,purple,grey,red,green,orange} from '../util/colors';
 
 export const styles = StyleSheet.create({
     container: {
-        paddingTop: 23
+        paddingTop: 23,
+        justifyContent:'center',
+        alignItems: 'center',
     },
     headerText: {
         margin: 15,
@@ -14,8 +16,7 @@ export const styles = StyleSheet.create({
         backgroundColor: purple,
         borderWidth: 1,
         marginTop: 5,
-        marginLeft:80,
-        marginRight:80,
+        width:160,
         height: 40,
         justifyContent:'center'
     },
@@ -27,6 +28,7 @@ export const styles = StyleSheet.create({
     input: {
         margin: 15,
         height: 80,
+        width:300,
         borderColor: grey,
         borderWidth: 1
     },
@@ -48,8 +50,7 @@ export const styles = StyleSheet.create({
         backgroundColor: red,
         borderWidth: 1,
         marginTop: 5,
-        marginLeft:80,
-        marginRight:80,
+        width:160,
         height: 40,
         justifyContent:'center'
     },
@@ -57,8 +58,7 @@ export const styles = StyleSheet.create({
         backgroundColor: green,
         borderWidth: 1,
         marginTop: 5,
-        marginLeft:80,
-        marginRight:80,
+        width:160,
         height: 40,
         justifyContent:'center'
     },
@@ -66,5 +66,31 @@ export const styles = StyleSheet.create({
         fontSize:16,
         color: red,
         textAlign:'center',
+    },
+    quizcontainer: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    flipCard: {
+        height: 200,
+        width: 200,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backfaceVisibility: 'hidden',
+        borderRadius: 4,
+        borderWidth: 1,
+        borderColor: red,
+    },
+    flipCardBack: {
+        borderColor: green,
+        position: "absolute",
+        top: 0,
+    },
+    flipText: {
+        width: 90,
+        fontSize: 20,
+        color: 'white',
+        fontWeight: 'bold',
     }
 });

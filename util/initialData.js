@@ -32,7 +32,5 @@ export function setInitialData(){
     return udacityDeck;
 }
 export  function getDecksListHelper(results){
-    console.log('helper');
-    console.log(results);
     return results===null? setInitialData:results
 }

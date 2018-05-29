@@ -1,7 +1,6 @@
 import * as API from '../util/api';
 
 export const ADD_NEW_DECK='ADD_NEW_DECK';
-export const REMOVE_DECK ='REMOVE_DECK';
 export const ADD_QUESTION ='ADD_QUESTION';
 export const SUBMIT_QUIZ ='SUBMIT_QUIZ';
 export const RECIEVE_DECK_LIST ='RECIEVE_DECK_LIST';
@@ -10,12 +9,6 @@ export const RECIEVE_DECK ='GET_DECK';
 export const addNewDeckAction=(title)=>{
     return {
         type:ADD_NEW_DECK,
-        title
-    }
-}
-export const removeDeckAction =(title) => {
-    return {
-        type:REMOVE_DECK,
         title
     }
 }

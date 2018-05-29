@@ -3,6 +3,7 @@ import {Text,View,TextInput,TouchableOpacity} from 'react-native';
 import {styles} from '../util/stylesheet';
 import {connect} from 'react-redux';
 import {addQuestion} from '../actions/index';
+import PropTypes from 'prop-types';
 
 class AddQuestion extends Component {
   static navigationOptions ={
@@ -88,7 +89,10 @@ class AddQuestion extends Component {
       );
   }
 }
-
+AddQuestion.propTypes={
+    navigation:PropTypes.object,
+    addQuestion:PropTypes.func.isRequired
+}
 function mapDispatchToProps(dispatch){
     return {
         addQuestion:(title,question) => dispatch(addQuestion(title,question))

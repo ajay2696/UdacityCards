@@ -1,4 +1,4 @@
-import {ADD_NEW_DECK,REMOVE_DECK,ADD_QUESTION,SUBMIT_QUIZ,RECIEVE_DECK_LIST} from '../actions/index';
+import {ADD_NEW_DECK,ADD_QUESTION,SUBMIT_QUIZ,RECIEVE_DECK_LIST} from '../actions/index';
 
 function decks(state={},action){
     switch(action.type){
@@ -8,11 +8,6 @@ function decks(state={},action){
         }
     case ADD_NEW_DECK:
         return Object.assign({},state,{[action.title]:{title:action.title,questions:[]}})
-    case REMOVE_DECK:
-        return {
-            ...state,
-            ...action.entry
-        }
     case ADD_QUESTION: {
         var  prevState = JSON.parse(JSON.stringify(state));
         prevState[action.title]['questions'].push(action.question)

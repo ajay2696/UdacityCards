@@ -23,7 +23,8 @@ class DeckCardView extends Component{
 
 DeckCardView.propTypes={
     navigation:PropTypes.object,
-    title:PropTypes.string
+    title:PropTypes.string,
+    count:PropTypes.string
 }
 
 export default DeckCardView;

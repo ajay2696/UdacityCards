@@ -44,7 +44,6 @@ class DeckQuizHomeView extends Component{
     }
 
     deleteDeck=()=>{
-        console.log('delete Deck');
     }
 }
 

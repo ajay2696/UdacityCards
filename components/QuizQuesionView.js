@@ -79,9 +79,6 @@ class QuizQuesionView extends Component {
         });
 
         let totalQuestions= this.props.questions.length;
-        console.log(this.state.questionNo);
-        console.log(totalQuestions);
-        console.log(this.props.questions[this.state.questionNo-1])
         let question =this.state.questionNo<=totalQuestions?this.props.questions[this.state.questionNo-1]:null;
 
         return (

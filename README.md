@@ -25,9 +25,9 @@ Below you will find some information on how to perform common tasks.<br>
 After cloning/downloading project
 
 ### `npm install`
-    - run npm install in backend/api-server folder to install all required Modules.
+    - run npm install in UdacityCards folder to install all required Modules.
 ### `npm start`
-    - run npm start in backend/api-server folder to start backend Server
+    - run npm start in UdacityCards folder to start react native app
 ### `Others`    
     - Open Expo XDE and start project
     - Open Expo Client in your mobile and select project. Js Bundle will be loaded

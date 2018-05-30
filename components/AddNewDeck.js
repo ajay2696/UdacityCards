@@ -20,7 +20,7 @@ class AddNewDeck extends Component {
    onSubmit = () =>{
        if(this.state.deckTitle!==''){
            this.props.addNewDeck(this.state.deckTitle);
-           this.props.navigation.navigate('DecksList',{
+           this.props.navigation.navigate('DeckQuizHomeView',{
                title:this.state.deckTitle
            });
            this.setState({ deckTitle:''})
@@ -53,6 +53,7 @@ function mapDispatchToProps(dispatch){
         addNewDeck:(title)=>dispatch(addNewDeck(title))
     }
 }
+
 
 AddNewDeck.propTypes ={
     addNewDeck:PropTypes.func,

@@ -13,7 +13,7 @@ class DecksList extends Component{
         title:''
     }
     componentDidMount(){
-        this.props.fetchDecksList();        
+        this.props.fetchDecksList();
     }
     render(){
         let decksList = Object.keys(this.props.decksList).map((key) => this.props.decksList[key]);

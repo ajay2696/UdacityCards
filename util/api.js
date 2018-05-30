@@ -1,5 +1,5 @@
 import {AsyncStorage} from 'react-native';
-import {UDACITY_DECKS,getDecksListHelper} from './initialData';
+import {UDACITY_DECKS,getDecksListHelper,getDeckHelper} from './initialData';
 
 export function addDeck(title){
     return AsyncStorage.getItem(UDACITY_DECKS).then((results)=>{
@@ -27,4 +27,8 @@ export function submitQuiz(title,score){
         data[title]['score'] =score;
         AsyncStorage.mergeItem(UDACITY_DECKS,JSON.stringify(data));
     });
+}
+
+export function getDeck(title){
+    return AsyncStorage.getItem(UDACITY_DECKS).then((data)=>getDeckHelper(JSON.parse(data),title));
 }

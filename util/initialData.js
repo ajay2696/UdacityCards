@@ -25,3 +25,7 @@ export function setInitialData(){
 export  function getDecksListHelper(results){
     return results===null? setInitialData():results
 }
+
+export function getDeckHelper(results,title){
+    return results[title]
+}

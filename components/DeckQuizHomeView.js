@@ -8,7 +8,8 @@ class DeckQuizHomeView extends Component{
     static navigationOptions =({navigation})=> {
         const titleName=navigation.getParam('title');
         return {
-            title:titleName
+            title:titleName,
+
         }
     };
 
@@ -43,8 +44,6 @@ class DeckQuizHomeView extends Component{
         );
     }
 
-    deleteDeck=()=>{
-    }
 }
 
 function mapStateToProps(state,ownProps){

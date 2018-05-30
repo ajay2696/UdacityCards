@@ -39,25 +39,23 @@ class QuizQuesionView extends Component {
         }
     }
     correctAnswer=()=>{
+        if(this.state.questionNo===this.props.questions.length){
+            clearLocalNotification().then(setLocalNotification);
+        }
         this.setState((prevState)=>({
             ...prevState,
             questionNo:prevState.questionNo+1,
             correctAnswerCount:prevState.correctAnswerCount+1
         }));
-
-        if(this.state.questionNo>this.props.questions.length){
-            clearLocalNotification().then(setLocalNotification);
-        }
     }
     incorrectAnswer=()=>{
+        if(this.state.questionNo===this.props.questions.length){
+            clearLocalNotification().then(setLocalNotification);
+        }
         this.setState((prevState)=>({
             ...prevState,
             questionNo:prevState.questionNo+1
         }));
-        
-        if(this.state.questionNo>this.props.questions.length){
-            clearLocalNotification().then(setLocalNotification);
-        }
     }
     restartQuiz=()=>{
         this.setState((prevState)=>({

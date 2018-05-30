@@ -12,7 +12,7 @@ import {createStore,applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
-import {setLocalNotification} from '../util/notification';
+import {setLocalNotification} from './util/notification';
 
 const MainScreenNavigator =createStackNavigator({
     DecksList:{

@@ -35,11 +35,6 @@ class DeckQuizHomeView extends Component{
                     <Text style={styles.buttonText}>Add Question</Text>
                 </TouchableOpacity>
                 <Text> </Text>
-                <TouchableOpacity
-                    style={styles.redColorButton}
-                    onPress={()=>this.deleteDeck}>
-                    <Text style={styles.buttonText}>Delete Deck</Text>
-                </TouchableOpacity>
             </View>
         );
     }

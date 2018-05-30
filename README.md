@@ -1,5 +1,5 @@
 Project: UdaciCards to create deck of cards. <br>
-UdaciCards App have Below Features
+UdaciCards App have Below Features and Application should be tested in IOS
   - Listing Decks in home screen with Title and Number of Questions
   - Click on each Deck will Redirect to Decks View
   - Decks View have options to add Question, Start quiz

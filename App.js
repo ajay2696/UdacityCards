@@ -12,6 +12,7 @@ import {createStore,applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
+import {setLocalNotification} from '../util/notification';
 
 const MainScreenNavigator =createStackNavigator({
     DecksList:{
@@ -67,7 +68,9 @@ const HomeScreenTabNavigator =createBottomTabNavigator({
 });
 
 export default class App extends React.Component {
-
+    componentDidMount(){
+        setLocalNotification();
+    }
     render() {
         return (
             <Provider store={createStore(reducer,applyMiddleware(thunk))}>

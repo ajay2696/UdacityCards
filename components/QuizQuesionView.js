@@ -3,6 +3,7 @@ import {View,Text,TouchableOpacity,Animated} from 'react-native';
 import {connect} from 'react-redux';
 import {styles} from '../util/stylesheet';
 import PropTypes from 'prop-types';
+import {clearLocalNotification,setLocalNotification} from '../util/notification';
 
 class QuizQuesionView extends Component {
     state={
@@ -38,18 +39,25 @@ class QuizQuesionView extends Component {
         }
     }
     correctAnswer=()=>{
-
         this.setState((prevState)=>({
             ...prevState,
             questionNo:prevState.questionNo+1,
             correctAnswerCount:prevState.correctAnswerCount+1
         }));
+
+        if(this.state.questionNo>this.props.questions.length){
+            clearLocalNotification().then(setLocalNotification);
+        }
     }
     incorrectAnswer=()=>{
         this.setState((prevState)=>({
             ...prevState,
             questionNo:prevState.questionNo+1
         }));
+        
+        if(this.state.questionNo>this.props.questions.length){
+            clearLocalNotification().then(setLocalNotification);
+        }
     }
     restartQuiz=()=>{
         this.setState((prevState)=>({
@@ -148,12 +156,7 @@ function mapStateToProps(state,ownProps){
     };
 }
 
-function mapDispatchToProps(dispatch){
-    return {
-
-    };
-}
 QuizQuesionView.propTypes={
     questions:PropTypes.object
 }
-export default connect(mapStateToProps,mapDispatchToProps)(QuizQuesionView);
+export default connect(mapStateToProps,null)(QuizQuesionView);

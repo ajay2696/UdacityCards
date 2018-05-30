@@ -8,17 +8,19 @@ UdaciCards App have Below Features
     - After completion of all the questions, Scores will be displayed and Option to Restart Quiz
     - Question view show number of remaining cards
   - Add Deck tab navigation option available to add new Deck
-  - 
+  - Notificaton implemented to notify at 8:30AM if quiz is not completed
+
 ## Getting Started
-   Prerequisites: This project runs on node environment, Install Node and npm.
+   Prerequisites:
+    - This project runs on node environment, Install Node and npm.
+    - This project Requires Expo XDE in Computer and Expo Client in mobile
 
 Below you will find some information on how to perform common tasks.<br>
 ## Table of Contents
 - [Installation Scripts](#available-scripts)
   - [npm install](#npm-install)
   - [npm start](#npm-start)
-- [Supported Browsers](#supported-browsers)
-
+  - [Others](#Others)
 ## Available Scripts
 After cloning/downloading project
 
@@ -26,8 +28,10 @@ After cloning/downloading project
     - run npm install in backend/api-server folder to install all required Modules.
 ### `npm start`
     - run npm start in backend/api-server folder to start backend Server
-Runs the app in the development mode.<br>
+### `Others`    
+    - Open Expo XDE and start project
+    - Open Expo Client in your mobile and select project. Js Bundle will be loaded
+    - This Application is tested in iphone.
+    - Please shake iphone to refresh for any changes
 
-
-The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
